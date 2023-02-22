@@ -1,0 +1,81 @@
+<a href="" routerLink="/besoin" style="margin: 10px;" routerLinkActive="active">allez à la page des besoins</a>
+
+<div class="box">
+  <div class="main">
+    <p class="heading">Canal de Difusion</p>
+    <div>
+      <form (submit)="createCanal($event)">
+        <div style="display: flex">
+          <input
+            class="form-control"
+            (input)="handleChange($event)"
+            name="name"
+            value="{{ newCanal.name }}"
+            type="text"
+            placeholder="Saisir le nom du Canal"
+          />
+          <button id="add" type="submit" style="display: none">
+            Add canal
+          </button>
+          <div class="button">
+            <label for="add">
+              <i class="fa fa-plus icon"></i>
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      style="display: flex"
+      class="note"
+      *ngFor="let canal of canals; let i = index"
+    >
+      <div style="display: flex" *ngIf="canal.disabled === true">
+        <input
+          size="50"
+          class="form-control"
+          type="text"
+          value="{{ canal.name }}"
+          disabled
+        />
+        <div class="button">
+          <i (click)="enable(i)" class="fa fa-pencil icon"></i>
+        </div>
+        <div class="button">
+          <i
+            id="{{ canal.id }}"
+            (click)="deleteCanal($event)"
+            class="fa fa-trash"
+          ></i>
+        </div>
+      </div>
+      <div style="display: flex" *ngIf="canal.disabled === false">
+        <input
+          size="50"
+          class="form-control"
+          (input)="editText($event, i)"
+          name="name"
+          type="text"
+          value="{{ canal.name }}"
+        />
+        <div class="button">
+          <i
+            id="{{ canal.id }}"
+            (click)="update($event, i)"
+            class="fa fa-check"
+          ></i>
+        </div>
+
+        <div class="button">
+          <i
+            id="{{ canal.id }}"
+            (click)="deleteCanal($event)"
+            class="fa fa-trash"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

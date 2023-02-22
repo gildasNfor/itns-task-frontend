@@ -1,0 +1,151 @@
+<a href="" routerLink="/canal" style="margin: 10px;" routerLinkActive="active">canal de diffusion</a>
+
+
+<form (submit)="createBesoin($event)">
+  <table>
+    <tr>
+      <th class="top" colspan="7">Besoins</th>
+    </tr>
+    <tr>
+      <th>
+        Date
+        <input
+        class="datepicker"
+          class="form-control input-field dates"
+          id="sort_date"
+          style="display: none"
+        />
+        <label for="sort_date">
+          <i  class="fa fa-sort icon"></i>
+        </label>
+      </th>
+      <th>Description Besoin</th>
+      <th>Statut
+        <i  class="fa fa-sort icon"></i>
+
+      </th>
+      <th>Dossier</th>
+      <th>Offre</th>
+      <th>Date envoi offre
+        <i  class="fa fa-sort icon"></i>
+
+      </th>
+      <th>Date rappel
+          <i  class="fa fa-sort icon"></i>
+        </th>
+    </tr>
+    <tr *ngFor="let besoin of besoins; let i = index">
+      <td>{{ besoin.date }}</td>
+      <td>{{ besoin.description }}</td>
+      <td>{{ besoin.status }}</td>
+      <td *ngIf="besoin.file_present === true">
+        Oui
+        <input
+          id="{{ besoin.id }}"
+          (input)="updateFile($event)"
+          type="file"
+          accept="application/pdf, image/*"
+          style="display: none"
+        />
+        <label for="{{ besoin.id }}">
+          <i class="fa fa-paperclip icon"></i>
+        </label>
+        <i
+          id="{{ besoin.id }}"
+          (click)="showFile($event)"
+          class="fa fa-eye icon"
+        ></i>
+      </td>
+      <td *ngIf="besoin.file_present === false">
+        En attente
+        <input
+          id="{{ besoin.id }}"
+          (input)="updateFile($event)"
+          type="file"
+          accept="application/pdf, image/*"
+          style="display: none"
+        />
+        <label for="{{ besoin.id }}">
+          <i class="fa fa-paperclip icon"></i>
+        </label>
+      </td>
+      <td>{{ besoin.offre }}</td>
+      <td>{{ besoin.date_envoi }}</td>
+      <td>{{ besoin.date_rappel }}</td>
+    </tr>
+    <tr>
+      <td>
+        <button type="submit" class="btn btn-red">
+          <i class="fa fa-plus icon"></i>
+          <!-- <i class="fa fa-address-book icon"></i> -->
+        </button>
+      </td>
+      <td>
+        <input
+          class="form-control input-field"
+          (input)="handleChange($event)"
+          name="description"
+          value="{{ newBesoin.description }}"
+          type="text"
+          required
+        />
+      </td>
+      <td>
+        <select
+          class="form-control input-field"
+          (change)="onSelected($event)"
+          required
+        >
+          <option
+            *ngFor="let status of statusTypes; let i = index"
+            value="{{ status.value }}"
+          >
+            {{ status.value }}
+          </option>
+        </select>
+      </td>
+      <td>
+        <input
+          id="file"
+          class="form-control input-field"
+          (input)="selectFile($event)"
+          name="file"
+          type="file"
+          accept="application/pdf, image/*"
+          style="display: none"
+        />
+        <label for="file">
+          <i class="fa fa-paperclip icon"></i>
+        </label>
+      </td>
+      <td>
+        <input
+          class="form-control input-field"
+          (input)="handleChange($event)"
+          name="offre"
+          type="text"
+          value="{{ newBesoin.offre }}"
+          required
+        />
+      </td>
+      <td>
+        <input
+          class="form-control input-field dates"
+          (change)="handleChange($event)"
+          name="date_envoi"
+          type="date"
+          required
+        />
+      </td>
+      <td>
+        <input
+          class="form-control input-field dates"
+          (change)="handleChange($event)"
+          name="date_rappel"
+          type="date"
+          required
+        />
+      </td>
+    </tr>
+  </table>
+</form>

@@ -1,0 +1,38 @@
+@import "~font-awesome/css/font-awesome.css";
+
+.box {
+    width: 40%;
+    height: fit-content;
+    /* background-color: ivory; */
+    margin: auto;
+    margin-top: 5%;
+    border: 1px solid grey;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    text-align: center;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.note {
+    display: flex;
+}
+
+.button {
+    padding: 10px;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid ivory;
+    outline: none;
+    
+}
