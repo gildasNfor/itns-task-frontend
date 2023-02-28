@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "push": "git add . && git commit -m 'jenkins remote access' && git push origin master"
   },
   "private": true,
   "dependencies": {
